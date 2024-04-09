@@ -1,5 +1,6 @@
 export const callbacksTesting = {
 	name: 'Callbacks testing',
+	title: 'Callbacks testing',
 	template: [[4, '1fr'], '1x8'],
 	fields: [
 		{

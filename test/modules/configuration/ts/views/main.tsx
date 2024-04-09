@@ -10,6 +10,7 @@ import { Div } from './components/div';
 import { Section } from './components/section';
 import { Select } from './components/select';
 import { useBinder } from '@beyond-js/react-18-widgets/hooks';
+
 interface ISettings {
 	[key: string]: any;
 }
@@ -33,16 +34,17 @@ function Main(): JSX.Element {
 		section: Section,
 		button: Button,
 	};
+	const handleSendInfo = () => {
+		
+	}
 
-	console.log(active);
 	return (
 		<main>
 			<h1>{title}</h1>
-			{/* @ts-ignore */}
 			<WiseForm types={types} model={active}>
-				<Button type='submit' variant='primary'>
+				{/* <Button onClick={handleSendInfo} variant='primary'>
 					Enviar
-				</Button>
+				</Button> */}
 			</WiseForm>
 		</main>
 	);

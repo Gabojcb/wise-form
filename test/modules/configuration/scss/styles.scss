@@ -1,0 +1,11 @@
+.page__container-configuration {
+	/* display: flex;
+	flex-direction: row;
+	background: var(--surface); */
+	margin: 20px auto;
+	padding: 3rem 18rem;
+	max-width: 100%;
+	gap: 1rem;
+	display: grid;
+	grid-template-columns: 20% 80%;
+}

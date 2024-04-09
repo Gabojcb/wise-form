@@ -1,23 +1,18 @@
-import { loginForm } from './forms/login';
-import { contactForm } from './forms/contact';
-import { IForm } from './interfaces/form';
-import { templateGap } from './forms/template-gap';
 import { ReactiveModel } from '@beyond-js/reactive/model';
 import { WFSettings } from '@bgroup/wise-form/settings';
 import { ReactSelect } from 'pragmate-ui/form/react-select';
-import { EditUserForm } from './forms/edit';
-import { composedWrapper } from './forms/composed-wrapper';
 import { FormModel } from '@bgroup/wise-form/form';
 import { Wrapper } from './views/wrapper';
 import { AppInput } from './views/components/app-input';
-import { dependenciesForm } from './forms/dependencies';
 import { Div } from './views/components/div';
 import { Section } from './views/components/section';
-import { formulasForm } from './forms/formulas';
-import { callbacksTesting } from './forms/callbacks-testing';
-import { registerFields } from './forms/register-fields';
-import { selectFields } from './forms/selectFields';
+import { formForForms } from './forms/form-for-forms';
+import { conditionsMultipleFields } from './forms/conditions-multiple-fields';
+import { simpleFormulas } from './forms/simple-formulas';
+import { formForFields } from './forms/form-for-fields';
+import { valueOfField } from './forms/value-of-field';
 import { ActionManager } from './action-manager';
+import { IForm } from './interfaces/form';
 
 type FormItem = Record<string, [string, IForm]>;
 export class StoreManager extends ReactiveModel<StoreManager> {
@@ -28,18 +23,17 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 	}
 	#instances = new Map();
 
+	get instances() {
+		return this.#instances;
+	}
+
 	get forms() {
 		return {
-			loginForm,
-			contactForm,
-			templateGap,
-			EditUserForm,
-			composedWrapper,
-			dependenciesForm,
-			formulasForm,
-			callbacksTesting,
-			registerFields,
-			selectFields,
+			formForForms: formForForms,
+			formForFields: formForFields,
+			conditionsMultipleFields: conditionsMultipleFields,
+			simpleFormulas: simpleFormulas,
+			valueOfField: valueOfField,
 		};
 	}
 
@@ -47,9 +41,8 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 		super();
 
 		this.reactiveProps(['selected']);
-		this.selected = this.forms.formulasForm;
-		this.setForm(this.forms.formulasForm);
-		// this.setForm(this.forms.contactForm);
+		this.selected = this.forms.formForForms;
+		this.setForm(this.forms.formForForms);
 		WFSettings.setFields({
 			select: ReactSelect,
 			baseWrapper: Wrapper,
