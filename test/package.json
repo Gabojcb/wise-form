@@ -39,6 +39,7 @@
 		"@beyond-js/kernel": "~0.1.9",
 		"@beyond-js/react-18-widgets": "~1.0.1",
 		"@beyond-js/reactive": "^1.1.11",
+		"framer-motion": "^11.0.25",
 		"mathjs": "^12.4.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",

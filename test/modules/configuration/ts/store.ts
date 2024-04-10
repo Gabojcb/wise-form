@@ -1,20 +1,14 @@
 import { ReactiveModel } from '@beyond-js/reactive/model';
-import { WFSettings } from '@bgroup/wise-form/settings';
-import { ReactSelect } from 'pragmate-ui/form/react-select';
 import { FormModel } from '@bgroup/wise-form/form';
-import { Wrapper } from './views/wrapper';
-import { AppInput } from './views/components/app-input';
-import { Div } from './views/components/div';
-import { Section } from './views/components/section';
 import { formForForms } from './forms/form-for-forms';
 import { conditionsMultipleFields } from './forms/conditions-multiple-fields';
 import { simpleFormulas } from './forms/simple-formulas';
-import { formForFields } from './forms/form-for-fields';
+import { FieldsForm } from './forms/fields';
 import { valueOfField } from './forms/value-of-field';
-import { ActionManager } from './action-manager';
-import { IForm } from './interfaces/form';
-
-type FormItem = Record<string, [string, IForm]>;
+import { WFSettings } from '@bgroup/wise-form/settings';
+import { ReactSelect } from 'pragmate-ui/form/react-select';
+import { Button } from 'pragmate-ui/components';
+import { FormulaInput } from './views/components/formula-conditions';
 export class StoreManager extends ReactiveModel<StoreManager> {
 	#forms: Map<string, FormModel> = new Map();
 	#active: FormModel;
@@ -29,26 +23,20 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 
 	get forms() {
 		return {
-			formForForms: formForForms,
-			formForFields: formForFields,
-			conditionsMultipleFields: conditionsMultipleFields,
-			simpleFormulas: simpleFormulas,
-			valueOfField: valueOfField,
+			formForForms,
+			fields: FieldsForm,
+			conditionsMultipleFields,
+			simpleFormulas,
+			valueOfField,
 		};
 	}
 
 	constructor() {
 		super();
-
-		this.reactiveProps(['selected']);
-		this.selected = this.forms.formForForms;
-		this.setForm(this.forms.formForForms);
+		this.setForm(this.forms.fields);
 		WFSettings.setFields({
 			select: ReactSelect,
-			baseWrapper: Wrapper,
-			appInput: AppInput,
-			div: Div,
-			section: Section,
+			button: Button,
 		});
 	}
 
@@ -58,11 +46,7 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 			return this.trigger('change');
 		}
 
-		const callbacks = {
-			copyValue: ActionManager.copyValue,
-			showValues: ActionManager.showValues
-		};
-		const form = await FormModel.create({ ...item, callbacks });
+		const form = await FormModel.create({ ...item });
 		this.#instances.set(item.name, form);
 		this.#active = form;
 		this.trigger('change');

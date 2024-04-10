@@ -10,6 +10,7 @@ import { Div } from './components/div';
 import { Section } from './components/section';
 import { Select } from './components/select';
 import { useBinder } from '@beyond-js/react-18-widgets/hooks';
+import { FormulaInput } from './components/formula-conditions';
 
 interface ISettings {
 	[key: string]: any;
@@ -22,22 +23,11 @@ function Main(): JSX.Element {
 	const [active, setActive] = React.useState<FormModel>(store.active);
 	const current = store.selected;
 	const title = `Form: ${active.name}`;
-	let settings: ISettings = current;
+
 	useBinder([store], () => setActive(store.active));
-	settings.callbacks = store.callbacks;
-
 	const types = {
-		select: Select,
-		baseWrapper: Wrapper,
-		appInput: AppInput,
-		div: Div,
-		section: Section,
-		button: Button,
+		formula: FormulaInput,
 	};
-	const handleSendInfo = () => {
-		
-	}
-
 	return (
 		<main>
 			<h1>{title}</h1>
