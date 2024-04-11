@@ -3,7 +3,7 @@ import { Input, Select } from 'pragmate-ui/form';
 import { CollapsibleContainer, CollapsibleHeader, CollapsibleContent } from 'pragmate-ui/collapsible';
 import { IconButton } from 'pragmate-ui/icons';
 
-export function ConditionSubItem() {
+export function MultipleSubItem() {
 
 	const [selectedValue, setSelectedValue] = React.useState(null);
 

@@ -9,11 +9,15 @@ $padding: .5rem .5rem .5rem 1.5rem;
 .container__formula-item {
 
     .block-formula {
-
         .block-formula__condition {
             padding: $padding;
             .formula-collapsible {
                 @include flexDirection(column, .2rem);
+                .formula-collapsible__action {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
                 .content-condition {
                     padding: $padding;
                     @include flexDirection(column);
