@@ -2,21 +2,17 @@ export const valueOfField = {
 	name: "valueOfField",
 	title: 'Value Of Field',
 	template: ['1', '1'],
-    formula: {
-		field: "country",
-		conditions: [
-			{ equal: "0", formula: "discountPercentGraphic + netGraphic" },
-			{ equal: "1", formula: "totalGraphic * discountAuthorGraphic" },
-			{ equal: "2", formula: "totalDigital * netDigital" }
-		]
-	},
 	fields: [
 		{
-			name: 'nameValueField',
+			name: 'nameFormula',
 			type: 'text',
-			placeholder: 'form...',
+			label: 'Name',
 			required: true, 
-            disabled: false
+		},
+		{
+			name: 'formulaField',
+			type: 'basedField',
+			label: 'Based Field',
 		},
 	],
 };

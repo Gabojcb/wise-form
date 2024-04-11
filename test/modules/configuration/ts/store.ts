@@ -1,7 +1,7 @@
 import { ReactiveModel } from '@beyond-js/reactive/model';
 import { FormModel } from '@bgroup/wise-form/form';
-import { formForForms } from './forms/form-for-forms';
-import { conditionsMultipleFields } from './forms/conditions-multiple-fields';
+import { CreateForm } from './forms/create';
+import { MultiplyFields } from './forms/multiply';
 import { simpleFormulas } from './forms/simple-formulas';
 import { FieldsForm } from './forms/fields';
 import { valueOfField } from './forms/value-of-field';
@@ -23,10 +23,10 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 
 	get forms() {
 		return {
-			formForForms,
+			create: CreateForm,
 			fields: FieldsForm,
-			conditionsMultipleFields,
 			simpleFormulas,
+			conditionsMultipleFields: MultiplyFields,
 			valueOfField,
 		};
 	}

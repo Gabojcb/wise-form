@@ -2,15 +2,11 @@ import React from 'react';
 import { WiseForm } from '@bgroup/wise-form/form';
 import { useFormContext } from './context';
 import { Button } from 'pragmate-ui/components';
-import { ReactSelect } from 'pragmate-ui/form/react-select';
-import { Wrapper } from './wrapper';
-import { AppInput } from './components/app-input';
 import { FormModel } from '@bgroup/wise-form/form';
-import { Div } from './components/div';
-import { Section } from './components/section';
-import { Select } from './components/select';
 import { useBinder } from '@beyond-js/react-18-widgets/hooks';
 import { FormulaInput } from './components/formula-conditions';
+import { BasedField } from './components/based-field';
+import { MultiplyFields } from './components/multiple-fields';
 
 interface ISettings {
 	[key: string]: any;
@@ -25,8 +21,11 @@ function Main(): JSX.Element {
 	const title = `Form: ${active.name}`;
 
 	useBinder([store], () => setActive(store.active));
+	console.log(MultiplyFields);
 	const types = {
 		formula: FormulaInput,
+		basedField: BasedField,
+		multiplyFields: MultiplyFields
 	};
 	return (
 		<main>

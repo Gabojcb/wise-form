@@ -1,0 +1,32 @@
+$padding: .5rem .5rem .5rem 1.5rem;
+
+@mixin flexDirection($direction, $gap: 1rem) {
+    display: flex;
+    flex-direction: $direction;
+    gap: $gap;
+}
+
+.container__multiply-item {
+    
+    .block-multiply {
+      
+        .block-multiply__condition {
+            padding: $padding;
+            .formula-collapsible {
+                @include flexDirection(column, .6rem);
+                .formula-collapsible__block {
+                    @include flexDirection(column, .6rem);
+                }
+                .content-condition {
+                    padding: $padding;
+                    @include flexDirection(column);
+                    .condition {
+                        @include flexDirection(row);
+                        align-items: end;
+                    }
+                }
+            }
+        }
+    }
+}
+  

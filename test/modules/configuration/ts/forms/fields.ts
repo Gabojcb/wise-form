@@ -1,6 +1,6 @@
 export const FieldsForm = {
 	name: 'fieldsForm',
-	title: 'Form For Fields',
+	title: 'Fields',
 	template: ['1', '1', '1'],
 	fields: [
 		{

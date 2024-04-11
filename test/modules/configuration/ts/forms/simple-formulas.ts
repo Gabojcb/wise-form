@@ -1,13 +1,19 @@
 export const simpleFormulas = {
-	formula: "totalGraphic * netGraphic + 1",
 	name: "simpleFormulas",
 	title: 'Simple Formulas',
-	template: ['1'],
+	template: ['1', '1'],
 	fields: [
 		{
-			name: 'selectComponent',
+			name: 'nameFormulaSimple',
 			type: 'text',
-			placeholder: 'select',
+			label: 'name',
+			required: true,
+		},
+		{
+			name: 'formula',
+			type: 'text',
+			label: 'formula',
+			variant: 'floating',
 			required: true,
 		},
 	],
