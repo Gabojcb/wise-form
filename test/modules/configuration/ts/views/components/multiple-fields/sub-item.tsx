@@ -1,7 +1,6 @@
 import React from 'react';
 import { Input, Select } from 'pragmate-ui/form';
-import { CollapsibleContainer, CollapsibleHeader, CollapsibleContent } from 'pragmate-ui/collapsible';
-import { IconButton } from 'pragmate-ui/icons';
+import { conditionsFormula } from '../../options';
 
 export function MultipleSubItem() {
 
@@ -11,17 +10,6 @@ export function MultipleSubItem() {
 		const {value} = event.currentTarget
 		setSelectedValue(value);
 	};
-
-	const conditions = [
-		{ value: 'equal', label: 'Equal' },
-		{ value: 'lower', label: 'Lower Than' },
-		{ value: 'upper', label: 'Greater Than' },
-		{ value: 'between', label: 'Between' },
-		{ value: 'different', label: 'Different' },
-		{ value: 'hasValue', label: 'Has Value' },
-		{ value: 'lessOrEqual', label: 'Less or Equal Than' },
-		{ value: 'greaterOrEqual', label: 'Greater or Equal Than' },
-	];	  
 	  
 	return (
 		<> 
@@ -29,7 +17,7 @@ export function MultipleSubItem() {
                 <div className="condition">
                     <Select
                         label="Type"
-                        options={conditions}
+                        options={conditionsFormula}
                         value={selectedValue}
                         onChange={handleSelectChange}
                     />

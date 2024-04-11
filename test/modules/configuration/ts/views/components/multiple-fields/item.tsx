@@ -1,26 +1,19 @@
 import React from 'react';
-import { Input, Select } from 'pragmate-ui/form';
+import { Input } from 'pragmate-ui/form';
 import { CollapsibleContainer, CollapsibleHeader, CollapsibleContent } from 'pragmate-ui/collapsible';
+import { MultipleSubItem } from './sub-item';
+import { IconButton } from 'pragmate-ui/icons';
 
 export function MultiplyItem() {
 
-	const [selectedValue, setSelectedValue] = React.useState(null);
+	const [items, setItems] = React.useState(1);
 
-	const handleSelectChange = (event) => {
-		const {value} = event.currentTarget
-		setSelectedValue(value);
-	};
+	const onFill = () => setItems(items + 1);
 
-	const conditions = [
-		{ value: 'equal', label: 'Equal' },
-		{ value: 'lower', label: 'Lower Than' },
-		{ value: 'upper', label: 'Greater Than' },
-		{ value: 'between', label: 'Between' },
-		{ value: 'different', label: 'Different' },
-		{ value: 'hasValue', label: 'Has Value' },
-		{ value: 'lessOrEqual', label: 'Less or Equal Than' },
-		{ value: 'greaterOrEqual', label: 'Greater or Equal Than' },
-	];	  
+	const output = [];
+	for (let i = 0; i < items; i++) {
+		output.push(<MultipleSubItem key={i} />);
+	}
 	  
 	return (
 		<section className='container__multiply-item'>
@@ -31,22 +24,12 @@ export function MultiplyItem() {
 						<CollapsibleContent className='formula-collapsible'>
 							<div className="formula-collapsible__block">
 								<Input type="textarea" label="fields" />
-								<strong className='content-condition__strong'>Conditions :</strong>
+								<div className="content-action">
+									<strong className='content-condition__strong'>Conditions :</strong>
+									<IconButton variant="primary" onClick={onFill} className="xs circle" icon="add" />
+								</div>
 							</div>
-							<div className="content-condition">
-								<div className="condition">
-									<Select
-										label="Type"
-										options={conditions}
-										value={selectedValue}
-										onChange={handleSelectChange}
-									/>
-									<Input type="text" className="center-input" placeholder="value" />
-								</div>
-								<div className="formula">
-									<Input type="text" placeholder="formula" />
-								</div>
-							</div>			
+							{output}
 						</CollapsibleContent>
 					</div>
 				</div>

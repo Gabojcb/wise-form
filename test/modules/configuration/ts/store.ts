@@ -8,7 +8,7 @@ import { valueOfField } from './forms/value-of-field';
 import { WFSettings } from '@bgroup/wise-form/settings';
 import { ReactSelect } from 'pragmate-ui/form/react-select';
 import { Button } from 'pragmate-ui/components';
-import { FormulaInput } from './views/components/formula-conditions';
+
 export class StoreManager extends ReactiveModel<StoreManager> {
 	#forms: Map<string, FormModel> = new Map();
 	#active: FormModel;
