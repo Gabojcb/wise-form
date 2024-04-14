@@ -7,6 +7,7 @@ import { useBinder } from '@beyond-js/react-18-widgets/hooks';
 import { FormulaInput } from './components/formula-conditions';
 import { BasedField } from './components/based-field';
 import { MultiplyFields } from './components/multiple-fields';
+import { ButtonSend } from './components/button-send';
 
 interface ISettings {
 	[key: string]: any;
@@ -21,11 +22,12 @@ function Main(): JSX.Element {
 	const title = `Form: ${active.name}`;
 
 	useBinder([store], () => setActive(store.active));
-	console.log(MultiplyFields);
+	console.log(store.instances);
 	const types = {
 		formula: FormulaInput,
 		basedField: BasedField,
-		multiplyFields: MultiplyFields
+		multiplyFields: MultiplyFields,
+		buttonSend: ButtonSend
 	};
 	return (
 		<main>

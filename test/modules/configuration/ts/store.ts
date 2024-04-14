@@ -17,9 +17,17 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 	}
 	#instances = new Map();
 
-	get instances() {
+	/* get instances() {
 		return this.#instances;
-	}
+	} */
+
+	formData: {};
+
+	static instance; 
+
+	get instances() {
+        return StoreManager.instance.#instances;
+    }
 
 	get forms() {
 		return {
@@ -33,7 +41,9 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 
 	constructor() {
 		super();
-		this.setForm(this.forms.fields);
+		console.log(this);
+		StoreManager.instance = this;
+		this.setForm(this.forms.create);
 		WFSettings.setFields({
 			select: ReactSelect,
 			button: Button,
@@ -58,5 +68,19 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 
 			specs.field.set({ options: data.map(item => ({ value: item.id, label: item.name })) });
 		});
+	};
+
+	saveData = data => {		
+		try {
+			this.formData = {
+				name: data.nameForm,
+				fields: data.fields
+			};
+			const formDataString = JSON.stringify(this.formData);
+        	localStorage.setItem('formData', formDataString);
+			this.setForm(this.forms.fields);
+		} catch (error) {
+			console.error(error);
+		}
 	};
 }

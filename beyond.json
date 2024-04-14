@@ -2,7 +2,7 @@
 	"packages": [
 		"/src/package.json",
 		"/test/package.json",
-		"../../public/pragmate-ui/src/package.json",
-		"../../public/reactive-model/library/package.json"
+		"../../baleares/public/pragmate-ui/src/package.json",
+		"../../baleares/public/reactive-model/library/package.json"
 	]
 }
