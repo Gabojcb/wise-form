@@ -41,9 +41,8 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 
 	constructor() {
 		super();
-		console.log(this);
 		StoreManager.instance = this;
-		this.setForm(this.forms.create);
+		this.setForm(this.forms.fields);
 		WFSettings.setFields({
 			select: ReactSelect,
 			button: Button,

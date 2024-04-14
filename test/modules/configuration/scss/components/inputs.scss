@@ -1,0 +1,10 @@
+.inputs-list {
+    .inputs-list__section {
+        display: grid;
+        grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
+        gap: 1rem;
+        flex-direction: row;
+    }
+
+    margin: .5rem 0rem;
+}

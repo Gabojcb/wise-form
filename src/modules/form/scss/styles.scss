@@ -5,7 +5,12 @@
 	.rf-fields-container {
 		display: grid;
 		grid-gap: 0.5rem;
-
+		
+		& div {
+			display: flex;
+			flex-direction: column;
+			gap: .8rem;
+		}
 		// Loop to generate .fr-* classes
 		@for $i from 1 through 6 {
 			&.fr-#{$i} {

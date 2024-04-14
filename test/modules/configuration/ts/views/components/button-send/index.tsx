@@ -23,9 +23,6 @@ export function ButtonSend() {
         }
 
         store.saveData(formData);
-
-        const formDataString = localStorage.getItem('formData');
-        console.log(JSON.parse(formDataString));
     }
 
 	return (

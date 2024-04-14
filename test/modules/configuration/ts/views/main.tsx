@@ -8,6 +8,7 @@ import { FormulaInput } from './components/formula-conditions';
 import { BasedField } from './components/based-field';
 import { MultiplyFields } from './components/multiple-fields';
 import { ButtonSend } from './components/button-send';
+import { InputsList } from './components/inputs';
 
 interface ISettings {
 	[key: string]: any;
@@ -22,12 +23,13 @@ function Main(): JSX.Element {
 	const title = `Form: ${active.name}`;
 
 	useBinder([store], () => setActive(store.active));
-	console.log(store.instances);
+	
 	const types = {
 		formula: FormulaInput,
 		basedField: BasedField,
 		multiplyFields: MultiplyFields,
-		buttonSend: ButtonSend
+		buttonSend: ButtonSend,
+		inputsList: InputsList
 	};
 	return (
 		<main>

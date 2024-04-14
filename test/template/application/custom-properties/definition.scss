@@ -3,10 +3,11 @@
 @use 'alerts';
 @import 'palette/neutral';
 @import 'palette/dynamic';
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 
 :root {
 	--secondary-font-family: 'Rubik', sans-serif;
-	--font-family: 'Rubik', sans-serif;
+	--font-family: "Comfortaa", sans-serif;;
 	--border-radius-sm: 6px;
 	--border-radius-base: 10px;
 	--border-radius-lg: 25px;
