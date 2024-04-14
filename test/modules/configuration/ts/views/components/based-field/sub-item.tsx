@@ -1,8 +1,9 @@
 import React from 'react';
 import { Input, Select } from 'pragmate-ui/form';
 import { conditionsFormula } from '../../options';
+import { IconButton } from 'pragmate-ui/icons';
 
-export function ConditionSubItem() {
+export function ConditionSubItem({onDelete, disabled }) {
 
 	const [selectedValue, setSelectedValue] = React.useState(null);
 
@@ -22,6 +23,7 @@ export function ConditionSubItem() {
                         onChange={handleSelectChange}
                     />
                     <Input type="text" className="center-input" placeholder="value" />
+                    <IconButton title='deleted' disabled={disabled} variant="danger" className="xs circle" icon="delete" onClick={onDelete} />
                 </div>
                 <div className="formula">
                     <Input type="text" placeholder="formula" />

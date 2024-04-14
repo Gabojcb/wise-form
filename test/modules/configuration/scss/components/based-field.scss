@@ -17,6 +17,7 @@ $padding: .5rem .5rem .5rem 1.5rem;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    flex-direction: row;
                 }
                 .content-condition {
                     padding: $padding;

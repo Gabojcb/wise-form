@@ -1,18 +1,24 @@
 import React from 'react';
-import { Input, Select } from 'pragmate-ui/form';
+import { Input } from 'pragmate-ui/form';
 import { CollapsibleContainer, CollapsibleHeader, CollapsibleContent } from 'pragmate-ui/collapsible';
 import { IconButton } from 'pragmate-ui/icons';
 import { ConditionSubItem } from './sub-item';
 
 export function ConditionItem() {
-	const [items, setItems] = React.useState(1);
+	const [items, setItems] = React.useState([]);
 
-	const onFill = () => setItems(items + 1);
+	const onFill = () => setItems([...items, {}]);
 
-	const output = [];
-	for (let i = 0; i < items; i++) {
-		output.push(<ConditionSubItem key={i} />);
-	}
+	const onDelete = (index) => {
+		const newItems = items.filter((_, i) => i !== index);
+		setItems(newItems);
+	};
+
+	const isDisabled = items.length < 2;
+
+	const output = items.map((_, index) => (
+		<ConditionSubItem disabled={isDisabled} onDelete={() => onDelete(index)} key={index} />
+	));
 
 	return (
 		<section className='container__formula-item'>
@@ -26,7 +32,7 @@ export function ConditionItem() {
 						<CollapsibleContent className='formula-collapsible'>
 							<div className="formula-collapsible__action">
 								<strong>Condition:</strong>
-								<IconButton variant="primary" onClick={onFill} className="xs circle" icon="add" />
+								<IconButton title='add' variant="primary" onClick={onFill} className="xs circle" icon="add" />
 							</div>
 							{output}
 						</CollapsibleContent>

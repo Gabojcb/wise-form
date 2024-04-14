@@ -6,14 +6,21 @@ import { IconButton } from 'pragmate-ui/icons';
 
 export function MultiplyItem() {
 
-	const [items, setItems] = React.useState(1);
+	const [items, setItems] = React.useState([]);
 
-	const onFill = () => setItems(items + 1);
+	const onFill = () => setItems([...items, {}]);
 
-	const output = [];
-	for (let i = 0; i < items; i++) {
-		output.push(<MultipleSubItem key={i} />);
-	}
+	const onDelete = (index) => {
+		const newItems = items.filter((_, i) => i !== index);
+		setItems(newItems);
+	};
+
+	const isDisabled = items.length < 2;
+
+	const output = items.map((_, index) => (
+		<MultipleSubItem disabled={isDisabled} onDelete={() => onDelete(index)} key={index} />
+	));
+
 	  
 	return (
 		<section className='container__multiply-item'>

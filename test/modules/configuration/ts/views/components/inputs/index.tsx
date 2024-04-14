@@ -9,7 +9,7 @@ export function InputsList() {
     const formDataParse = JSON.parse(formData);
     const inputs = formDataParse.fields.map((field: string) => <Input key={field} type='text' label={field} value='' />)
 
-    const output = formDataParse?.fields ? inputs : <Empty text="No records to display" icon="info" />
+    const output = formDataParse?.fields ? inputs : <Empty text="There are no saved fields to configure" icon="info" />
 
 	return (
 		<main className="inputs-list">
