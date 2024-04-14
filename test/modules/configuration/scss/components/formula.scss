@@ -1,0 +1,14 @@
+@mixin flexDirection($direction, $gap: 1rem) {
+    display: flex;
+    flex-direction: $direction;
+    gap: $gap;
+}
+
+.formula-condition-item {
+    @include flexDirection(column, 1rem);
+
+    & > div.content-input--delete {
+        display: flex;
+        flex-direction: row;
+    }
+}

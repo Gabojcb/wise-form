@@ -1,12 +1,16 @@
 import React from 'react';
 import { Input } from 'pragmate-ui/form';
-export function ConditionItem() {
+import { IconButton } from 'pragmate-ui/icons';
+
+
+export function ConditionItem({onDelete, disabled}) {
 	return (
-		<div>
-			<label>Formula</label>
-			<Input name='Formula' />
-			<label>Condition</label>
-			<Input name='condition' />
-		</div>
+		<section className='formula-condition-item'>
+			<div className="content-input--delete">
+				<Input name='Formula' variant='floating' type='text' label='Formula' />
+				<IconButton title='deleted' disabled={disabled} variant="danger" className="xs circle" icon="delete" onClick={onDelete} />
+			</div>
+			<Input name='condition'variant='floating' type='text' label='Condition' />
+		</section>
 	);
 }

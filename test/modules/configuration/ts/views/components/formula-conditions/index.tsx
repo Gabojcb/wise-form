@@ -1,28 +1,32 @@
 import React from 'react';
-import { ConditionItem } from './item';
 import { Button } from 'pragmate-ui/components';
+import { ConditionItem } from './item';
 import { useWiseFormContext } from '@bgroup/wise-form/form';
+
 export function FormulaInput(data) {
-	const [items, setItems] = React.useState(1);
-	const { model, values, formTypes } = useWiseFormContext();
+  const [items, setItems] = React.useState([]);
 
-	const fieldModel = model.getField(data.name);
-	/* console.log('modelo del field', fieldModel); */
-	const onFill = () => setItems(items + 1);
+  const onFill = () => setItems([...items, {}]);
 
-	const output = [];
-	for (let i = 0; i < items; i++) {
-		output.push(<ConditionItem key={i} />);
-	}
+  const onDelete = (index) => {
+    const newItems = items.filter((_, i) => i !== index);
+    setItems(newItems);
+  };
 
-	return (
-		<div>
-			<header>
-				<Button variant='primary' bordered onClick={onFill}>
-					Agregar
-				</Button>
-			</header>
-			{output}
-		</div>
-	);
+  const isDisabled = items.length < 2;
+
+  const output = items.map((_, index) => (
+    <ConditionItem disabled={isDisabled} onDelete={() => onDelete(index)} key={index} />
+  ));
+
+  return (
+    <div>
+      <header>
+        <Button variant='primary' bordered onClick={onFill}>
+          Add Form
+        </Button>
+      </header>
+      {output}
+    </div>
+  );
 }
