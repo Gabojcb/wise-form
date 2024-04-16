@@ -69,6 +69,10 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 		});
 	};
 
+	changeTabForm = (form: string) => {
+		this.setForm(this.forms[form]);
+	}
+
 	saveData = data => {		
 		try {
 			this.formData = {

@@ -28,7 +28,7 @@ export function ButtonSend() {
 	return (
 		<>
             <Button variant='primary' bordered onClick={handleSendData}>
-                Send
+                Next
             </Button>
 		</>
 	);

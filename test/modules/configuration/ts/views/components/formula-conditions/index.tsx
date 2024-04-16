@@ -2,31 +2,41 @@ import React from 'react';
 import { ConditionItem } from './item';
 import { IconButton } from 'pragmate-ui/icons';
 import { useWiseFormContext } from '@bgroup/wise-form/form';
+import { useFormContext } from '../../context';
+import { Select } from 'pragmate-ui/form';
+import { Button } from 'pragmate-ui/components';
 
-export function FormulaInput(data) {
-  const [items, setItems] = React.useState([]);
+export function FormulaInput() {
 
-  const onFill = () => setItems([...items, {}]);
+  const { store } = useFormContext();
+	const [selectedValue, setSelectedValue] = React.useState('');
 
-  const onDelete = (index) => {
-    const newItems = items.filter((_, i) => i !== index);
-    setItems(newItems);
-  };
+  const handleSelectChange = (event) => {
+		const {value} = event.currentTarget
+		setSelectedValue(value);
+	};
 
+  const formulas = [
+      { value: 'simpleFormulas', label: 'Simple Formulas' },
+      { value: 'conditionsMultipleFields', label: 'Conditions Multiple Fields' },
+      { value: 'valueOfField', label: 'Value Of Field' },
+  ];	  
 
-  const output = items.map((_, index) => (
-    <ConditionItem  onDelete={() => onDelete(index)} key={index} />
-  ));
+  const handleSendData = () => {
+    store.changeTabForm(selectedValue);
+  }
 
   return (
     <main className='main__formula-condition'>
-      <header className='header__formula-condition'>
-        <h3>Add Formula</h3>
-        <IconButton title='add' variant="primary" onClick={onFill} className="xs circle" icon="add" />
-      </header>
-      <article className="article__formula-condition">
-        {output}
-      </article>
+      <Select
+          label="Type formula"
+          options={formulas}
+          value={selectedValue}
+          onChange={handleSelectChange}
+      />
+      <Button variant='primary' block bordered onClick={handleSendData}>
+        Next
+      </Button>
     </main>
   );
 }
