@@ -1,8 +1,9 @@
 import React from 'react';
 import { MultiplyItem } from './item';
 import { Button } from 'pragmate-ui/components';
+import { IconButton } from 'pragmate-ui/icons';
 
-export function MultiplyFields(data) {
+export function MultiplyFields() {
 	const [items, setItems] = React.useState(1);
 
 	const onFill = () => setItems(items + 1);
@@ -13,13 +14,14 @@ export function MultiplyFields(data) {
 	}
 
 	return (
-		<div>
-			<header>
-				<Button variant='primary' bordered onClick={onFill}>
-					Agregar
-				</Button>
+		<main className='main__multiple-fields'>
+			<header className='header__multiple-fields'>
+				<h2>Add condition</h2>
+				<IconButton title='add' variant="primary" onClick={onFill} className="xs circle" icon="add" />
 			</header>
-			{output}
-		</div>
+			<article className="article__multiple-fields">
+				{output}
+			</article>
+		</main>
 	);
 }

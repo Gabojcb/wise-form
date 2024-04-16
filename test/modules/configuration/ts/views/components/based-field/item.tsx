@@ -14,10 +14,8 @@ export function ConditionItem() {
 		setItems(newItems);
 	};
 
-	const isDisabled = items.length < 2;
-
 	const output = items.map((_, index) => (
-		<ConditionSubItem disabled={isDisabled} onDelete={() => onDelete(index)} key={index} />
+		<ConditionSubItem onDelete={() => onDelete(index)} key={index} />
 	));
 
 	return (

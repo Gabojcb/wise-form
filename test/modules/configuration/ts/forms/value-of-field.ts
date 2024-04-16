@@ -7,6 +7,7 @@ export const valueOfField = {
 			name: 'nameFormula',
 			type: 'text',
 			label: 'Name',
+			variant: 'floating',
 			required: true, 
 		},
 		{

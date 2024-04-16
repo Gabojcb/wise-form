@@ -7,6 +7,7 @@ export const simpleFormulas = {
 			name: 'nameFormulaSimple',
 			type: 'text',
 			label: 'name',
+			variant: 'floating',
 			required: true,
 		},
 		{

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from 'pragmate-ui/components';
 import { ConditionItem } from './item';
+import { IconButton } from 'pragmate-ui/icons';
 import { useWiseFormContext } from '@bgroup/wise-form/form';
 
 export function FormulaInput(data) {
@@ -13,20 +13,20 @@ export function FormulaInput(data) {
     setItems(newItems);
   };
 
-  const isDisabled = items.length < 2;
 
   const output = items.map((_, index) => (
-    <ConditionItem disabled={isDisabled} onDelete={() => onDelete(index)} key={index} />
+    <ConditionItem  onDelete={() => onDelete(index)} key={index} />
   ));
 
   return (
-    <div>
-      <header>
-        <Button variant='primary' bordered onClick={onFill}>
-          Add Form
-        </Button>
+    <main className='main__formula-condition'>
+      <header className='header__formula-condition'>
+        <h3>Add Formula</h3>
+        <IconButton title='add' variant="primary" onClick={onFill} className="xs circle" icon="add" />
       </header>
-      {output}
-    </div>
+      <article className="article__formula-condition">
+        {output}
+      </article>
+    </main>
   );
 }

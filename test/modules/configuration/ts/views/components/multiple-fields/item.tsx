@@ -15,24 +15,23 @@ export function MultiplyItem() {
 		setItems(newItems);
 	};
 
-	const isDisabled = items.length < 2;
-
 	const output = items.map((_, index) => (
-		<MultipleSubItem disabled={isDisabled} onDelete={() => onDelete(index)} key={index} />
+		<MultipleSubItem onDelete={() => onDelete(index)} key={index} />
 	));
 
-	  
 	return (
-		<section className='container__multiply-item'>
-			<CollapsibleContainer>
+		<CollapsibleContainer>
+			<section className='container__multiply-item'>
 				<div className="block-multiply">
-					<CollapsibleHeader className='my-header'><strong className='block-formula__strong'>Conditions:</strong></CollapsibleHeader>
+					<CollapsibleHeader className='my-header'>
+						<h3 className='block-formula__strong'>Conditions:</h3>
+					</CollapsibleHeader>
 					<div className="block-multiply__condition">
 						<CollapsibleContent className='formula-collapsible'>
 							<div className="formula-collapsible__block">
-								<Input type="textarea" label="fields" />
+								<Input type="textarea" variant='floating' label="fields" />
 								<div className="content-action">
-									<strong className='content-condition__strong'>Conditions :</strong>
+									<h4 className='content-condition__strong'>Conditions :</h4>
 									<IconButton variant="primary" onClick={onFill} className="xs circle" icon="add" />
 								</div>
 							</div>
@@ -40,7 +39,7 @@ export function MultiplyItem() {
 						</CollapsibleContent>
 					</div>
 				</div>
-			</CollapsibleContainer>
-		</section>
+			</section>
+		</CollapsibleContainer>
 	);
 }

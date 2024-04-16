@@ -6,14 +6,16 @@ export const MultiplyFields = {
 		{
 			name: 'formula',
 			type: 'text',
-			placeholder: 'form...',
+			label: 'Formula',
 			required: true, 
+			variant: 'floating',
             disabled: false
 		},
 		{
-			name: 'nameFormulaMultiply',
+			name: 'Nombre',
 			type: 'text',
-			placeholder: 'form...',
+			label: 'form...',
+			variant: 'floating',
 			required: true, 
             disabled: false
 		},

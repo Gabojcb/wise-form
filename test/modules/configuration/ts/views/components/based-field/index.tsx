@@ -1,8 +1,10 @@
 import React from 'react';
 import { ConditionItem } from './item';
-import { Button } from 'pragmate-ui/components';
-import { useWiseFormContext } from '@bgroup/wise-form/form';
-export function BasedField(data) {
+import { IconButton } from 'pragmate-ui/icons';
+
+
+
+export function BasedField() {
 	const [items, setItems] = React.useState(1);
 
 	const onFill = () => setItems(items + 1);
@@ -13,13 +15,14 @@ export function BasedField(data) {
 	}
 
 	return (
-		<div>
-			<header>
-				<Button variant='primary' bordered onClick={onFill}>
-					Agregar
-				</Button>
+		<main className='main__based-field'>
+			<header className='header__based-field'>
+				<h3>Add Formula</h3>
+				<IconButton title='add' variant="primary" onClick={onFill} className="xs circle" icon="add" />
 			</header>
-			{output}
-		</div>
+			<article className="article__based-field">
+				{output}
+			</article>
+		</main>
 	);
 }

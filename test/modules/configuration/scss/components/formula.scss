@@ -4,11 +4,28 @@
     gap: $gap;
 }
 
-.formula-condition-item {
+.main__formula-condition {
     @include flexDirection(column, 1rem);
 
-    & > div.content-input--delete {
-        display: flex;
-        flex-direction: row;
+    .header__formula-condition {
+        @include flexDirection(row);
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .article__formula-condition {
+        @include flexDirection(column, 0rem);
+
+        .formula-condition-item {
+            margin: .5rem 0rem;
+            @include flexDirection(column, 1rem);
+        
+            & > div.content-input--delete {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
     }
 }
+

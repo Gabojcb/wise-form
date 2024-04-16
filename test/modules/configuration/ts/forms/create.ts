@@ -6,7 +6,7 @@ export const CreateForm = {
 		{
 			name: 'nameForm',
 			type: 'text',
-			label: 'Name',
+			label: 'Name of Form',
 			variant: 'floating',
             disabled: false
 		},

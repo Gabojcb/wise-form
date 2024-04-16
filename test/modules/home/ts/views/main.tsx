@@ -34,7 +34,6 @@ function Main(): JSX.Element {
 		button: Button,
 	};
 
-	console.log(active);
 	return (
 		<main>
 			<h1>{title}</h1>

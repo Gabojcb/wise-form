@@ -6,29 +6,40 @@ $padding: .5rem .5rem .5rem 1.5rem;
     gap: $gap;
 }
 
-.container__multiply-item {
+
+.main__multiple-fields {
+    .header__multiple-fields {
+        @include flexDirection(row);
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .article__multiple-fields {
+        .container__multiply-item {
     
-    .block-multiply {
-      
-        .block-multiply__condition {
-            padding: $padding;
-            .formula-collapsible {
-                @include flexDirection(column, .6rem);
-                .formula-collapsible__block {
-                    @include flexDirection(column, .6rem);
-                    .content-action {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        flex-direction: row;
-                    }
-                }
-                .content-condition {
+            .block-multiply {
+              
+                .block-multiply__condition {
                     padding: $padding;
-                    @include flexDirection(column);
-                    .condition {
-                        @include flexDirection(row);
-                        align-items: end;
+                    .formula-collapsible {
+                        @include flexDirection(column, .6rem);
+                        .formula-collapsible__block {
+                            @include flexDirection(column, .6rem);
+                            .content-action {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                flex-direction: row;
+                            }
+                        }
+                        .content-condition {
+                            padding: $padding;
+                            @include flexDirection(column);
+                            .condition {
+                                @include flexDirection(row);
+                                align-items: end;
+                            }
+                        }
                     }
                 }
             }
