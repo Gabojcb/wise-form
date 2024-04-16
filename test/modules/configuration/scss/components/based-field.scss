@@ -19,14 +19,21 @@ $padding: .5rem .5rem .5rem 1.5rem;
     .article__based-field {
         @include flexDirection(column, 0rem);
 
-        .container__formula-item {
+        .container__based-item {
         
-            .block-formula {
-                .block-formula__condition {
+            .block-based {
+                .collapsible__header.block-based__header  {
+                    .collapsible__header-content {
+                        @include flexDirection(row);
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+                }
+                .block-based__condition {
                     padding: $padding;
-                    .formula-collapsible {
+                    .based-collapsible {
                         @include flexDirection(column, .2rem);
-                        .formula-collapsible__action {
+                        .based-collapsible__action {
                             display: flex;
                             justify-content: space-between;
                             align-items: center;

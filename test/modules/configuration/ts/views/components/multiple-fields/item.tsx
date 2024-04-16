@@ -4,7 +4,7 @@ import { CollapsibleContainer, CollapsibleHeader, CollapsibleContent } from 'pra
 import { MultipleSubItem } from './sub-item';
 import { IconButton } from 'pragmate-ui/icons';
 
-export function MultiplyItem() {
+export function MultiplyItem({onDeleteCondition}) {
 
 	const [items, setItems] = React.useState([]);
 
@@ -23,8 +23,9 @@ export function MultiplyItem() {
 		<CollapsibleContainer>
 			<section className='container__multiply-item'>
 				<div className="block-multiply">
-					<CollapsibleHeader className='my-header'>
+					<CollapsibleHeader className='block-multiple__collapsible'>
 						<h3 className='block-formula__strong'>Conditions:</h3>
+						<IconButton title='remove' variant="danger" className="xs circle" icon="close" onClick={onDeleteCondition} />
 					</CollapsibleHeader>
 					<div className="block-multiply__condition">
 						<CollapsibleContent className='formula-collapsible'>

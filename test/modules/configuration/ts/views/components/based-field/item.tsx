@@ -4,7 +4,7 @@ import { CollapsibleContainer, CollapsibleHeader, CollapsibleContent } from 'pra
 import { IconButton } from 'pragmate-ui/icons';
 import { ConditionSubItem } from './sub-item';
 
-export function ConditionItem() {
+export function ConditionItem({onDeleteCondition}) {
 	const [items, setItems] = React.useState([]);
 
 	const onFill = () => setItems([...items, {}]);
@@ -19,17 +19,18 @@ export function ConditionItem() {
 	));
 
 	return (
-		<section className='container__formula-item'>
+		<section className='container__based-item'>
 			<CollapsibleContainer>
-				<div className="block-formula">
-					<CollapsibleHeader className='block-formula__header'>
-						<strong className='block-formula__strong'>Formula: </strong>
+				<div className="block-based">
+					<CollapsibleHeader className='block-based__header'>
+						<h3 className='block-based__strong'>Formula: </h3>
+						<IconButton title='remove' variant="danger" className="xs circle" icon="close" onClick={onDeleteCondition} />
 					</CollapsibleHeader>
 					<Input placeholder="field" name='fields' />
-					<div className="block-formula__condition">
-						<CollapsibleContent className='formula-collapsible'>
-							<div className="formula-collapsible__action">
-								<strong>Condition:</strong>
+					<div className="block-based__condition">
+						<CollapsibleContent className='based-collapsible'>
+							<div className="based-collapsible__action">
+								<h4>Condition:</h4>
 								<IconButton title='add' variant="primary" onClick={onFill} className="xs circle" icon="add" />
 							</div>
 							{output}

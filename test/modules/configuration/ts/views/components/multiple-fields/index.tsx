@@ -4,14 +4,18 @@ import { Button } from 'pragmate-ui/components';
 import { IconButton } from 'pragmate-ui/icons';
 
 export function MultiplyFields() {
-	const [items, setItems] = React.useState(1);
+	const [items, setItems] = React.useState([]);
 
-	const onFill = () => setItems(items + 1);
+	const onFill = () => setItems([...items, {}]);
 
-	const output = [];
-	for (let i = 0; i < items; i++) {
-		output.push(<MultiplyItem key={i} />);
-	}
+	const onDelete = (index) => {
+		const newItems = items.filter((_, i) => i !== index);
+		setItems(newItems);
+	};
+
+	const output = items.map((_, index) => (
+		<MultiplyItem onDeleteCondition={() => onDelete(index)} key={index} />
+	));
 
 	return (
 		<main className='main__multiple-fields'>

@@ -18,7 +18,13 @@ $padding: .5rem .5rem .5rem 1.5rem;
         .container__multiply-item {
     
             .block-multiply {
-              
+                .collapsible__header.block-multiple__collapsible {
+                    .collapsible__header-content {
+                        @include flexDirection(row);
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+                }
                 .block-multiply__condition {
                     padding: $padding;
                     .formula-collapsible {

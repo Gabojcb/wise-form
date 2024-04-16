@@ -5,19 +5,23 @@ import { IconButton } from 'pragmate-ui/icons';
 
 
 export function BasedField() {
-	const [items, setItems] = React.useState(1);
+	
+	const [items, setItems] = React.useState([]);
 
-	const onFill = () => setItems(items + 1);
+	const onFill = () => setItems([...items, {}]);
 
-	const output = [];
-	for (let i = 0; i < items; i++) {
-		output.push(<ConditionItem key={i} />);
-	}
+	const onDelete = (index) => {
+		const newItems = items.filter((_, i) => i !== index);
+		setItems(newItems);
+	};
 
+	const output = items.map((_, index) => (
+		<ConditionItem onDeleteCondition={() => onDelete(index)} key={index} />
+	));
 	return (
 		<main className='main__based-field'>
 			<header className='header__based-field'>
-				<h3>Add Formula</h3>
+				<h2>Add Formula</h2>
 				<IconButton title='add' variant="primary" onClick={onFill} className="xs circle" icon="add" />
 			</header>
 			<article className="article__based-field">
