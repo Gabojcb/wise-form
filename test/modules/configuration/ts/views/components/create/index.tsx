@@ -12,11 +12,18 @@ export function CreateForm() {
     nameForm: '',
     title: '',
     template: '',
-    numberFields: 1,
+    fields: '',
   });
 
- 
   const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleTextareaChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -26,7 +33,15 @@ export function CreateForm() {
 
   const handleNextClick = async () => {
     try {
-      store.saveData(formData);
+      const fieldsValue = formData.fields.trim().split('\n').map(field => field.trim().toLowerCase());
+      const filteredFields = fieldsValue.filter(field => field !== '').join(',').replace(/,+/g, ',');
+  
+      setFormData({
+        ...formData,
+        fields: filteredFields,
+      });
+  
+      store.saveData({...formData, fields: filteredFields});
     } catch (error) {
       console.error(error);
     }
@@ -37,8 +52,8 @@ export function CreateForm() {
       <section className="section__creation-form">
         <Input type="text" value={formData.nameForm} name="nameForm" label="Nombre de formulario" onChange={handleInputChange} />
         <Input type="text" value={formData.title} name="title" label="Titulo" onChange={handleInputChange} />
-        <Textarea value={formData.template} label="Template" onChange={handleInputChange} />			
-        <Input type="number" name="numberFields" label="Numero de campos a crear" onChange={handleInputChange} />
+        <Textarea value={formData.template} name="template" label="Template" onChange={handleTextareaChange} />
+        <Textarea value={formData.fields} name="fields" label="Fields" onChange={handleTextareaChange} />			
         <Button variant='primary' block bordered onClick={handleNextClick}>
           Next
         </Button>
