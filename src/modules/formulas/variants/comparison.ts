@@ -1,4 +1,5 @@
 import type { FormulaManager } from '..';
+import { EvaluationsManager } from '../helpers/evaluations';
 
 import { Token } from '../helpers/token';
 import { FormulaObserver, IComplexCondition, IConditionalField } from '../types/formulas';
@@ -7,6 +8,7 @@ import { number, parse } from 'mathjs';
 export class FormulaComparison {
 	#plugin: any;
 	#specs: FormulaObserver;
+	#emptyValue: undefined;
 	#tokens: Token[];
 	get formula() {
 		return this.#specs.formula;
@@ -17,7 +19,7 @@ export class FormulaComparison {
 	}
 	#value: string | number | undefined | 0;
 	get value() {
-		return this.calculate();
+		return this.#value;
 	}
 	get name() {
 		return this.#specs.name;
@@ -56,20 +58,42 @@ export class FormulaComparison {
 		models.forEach(model => model.on('change', this.calculate.bind(this)));
 	}
 
-	start() {}
+	start() { }
 
 	evaluate() {
-		const models = this.#parent.getModels(this.#specs.fields);
-		const condition = this.#specs.formula.condition;
-		let applied;
-		switch (condition) {
-			case 'upper':
-				applied = this.calculateUpper(models);
-				break;
-		}
+		const formula = <IComplexCondition>this.#specs.formula;
 
-		return applied;
+		if (typeof formula === 'string' || !formula.conditions) {
+			console.error('Invalid formula configuration');
+			return null;
+		}
+		const models = this.#parent.getModels(this.#specs.fields);
+		let fieldValues = models.map(fieldModel => {
+			if (!fieldModel) return
+			return { name: fieldModel.name, value: fieldModel ? fieldModel.value : null };
+		});
+
+		// Utilizar reduce para comparar cada par de valores consecutivos y determinar cuál cumple la condición
+		const resultField = fieldValues.reduce((prevField, currentField) => {
+			if (!prevField) return currentField;
+
+			// Si el campo previo cumple la condición con respecto al actual, se mantiene como el campo elegido
+			if (EvaluationsManager.validate(formula.condition, prevField.value, currentField.value)) {
+				return prevField;
+			}
+			// De lo contrario, el campo actual se convierte en el nuevo campo elegido
+			return currentField;
+		}, null);
+
+		if (resultField) {
+			// Ajustar según la lógica específica deseada, como devolver una fórmula particular basada en el resultado
+			return resultField;
+		} else {
+			// Manejar el caso de que ninguno cumpla la condición
+			return null;
+		}
 	}
+
 
 	calculate() {
 		let applied = this.evaluate();
@@ -86,10 +110,18 @@ export class FormulaComparison {
 		const formula = this.#parent.getParser({ formula: formulaString });
 		const variables = formula.tokens.filter(token => token.type === 'variable').map(item => item.value);
 		const params = this.#parent.getParams(variables);
-		const result = parse(formula.formula).evaluate(params);
-		this.#value = result;
 
-		return this.#value;
+		try {
+			const keys = Object.keys(params);
+			const result = keys.length === 1 ? params[keys[0]] : parse(this.formula as string).evaluate(params);
+
+			this.#value = [-Infinity, Infinity, undefined, null, NaN].includes(result) ? this.#emptyValue : Number(result.toFixed(2));;
+			this.#parent.trigger('change');
+			return this.#value;
+		} catch (e) {
+			console.log('formula', this.name, this.formula, params);
+			throw new Error('Error calculating the formula');
+		}
 	}
 
 	calculateUpper(models) {

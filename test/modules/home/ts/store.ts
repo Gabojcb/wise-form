@@ -15,9 +15,9 @@ import { Div } from './views/components/div';
 import { Section } from './views/components/section';
 import { formulasForm } from './forms/formulas';
 import { callbacksTesting } from './forms/callbacks-testing';
-import { registerFields } from './forms/register-fields';
-import { selectFields } from './forms/selectFields';
-import { ActionManager } from './action-manager';
+import { bindlessForm } from './forms/bindless-form';
+import { BindlessInput } from './views/components/bindless-input';
+import { PercentageInput } from './views/components/percentage-input';
 
 type FormItem = Record<string, [string, IForm]>;
 export class StoreManager extends ReactiveModel<StoreManager> {
@@ -37,9 +37,7 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 			composedWrapper,
 			dependenciesForm,
 			formulasForm,
-			callbacksTesting,
-			registerFields,
-			selectFields,
+			bindlessForm,
 		};
 	}
 
@@ -56,6 +54,8 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 			appInput: AppInput,
 			div: Div,
 			section: Section,
+			bindlessInput: BindlessInput,
+			percentageInput: PercentageInput,
 		});
 	}
 

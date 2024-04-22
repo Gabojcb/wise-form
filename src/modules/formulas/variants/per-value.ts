@@ -2,20 +2,26 @@ import type { FormulaManager } from '../';
 import { EvaluationsManager } from '../helpers/evaluations';
 import { Parser } from '../helpers/parser';
 import { FormulaObserver, IComplexCondition, ParserData } from '../types/formulas';
-import { parse } from 'mathjs';
+import { filter, parse } from 'mathjs';
 
 export class FormulaPerValue {
 	#plugin: any;
+	#emptyValue: undefined;
 	#specs: FormulaObserver;
 	get formula() {
 		return this.#specs.formula;
 	}
 	#value: string | number | undefined | 0;
 	get value() {
-		return this.calculateAll();
+		return this.#value;
 	}
 	get name() {
 		return this.#specs.name;
+	};
+
+	#observers: string[];
+	get observers() {
+		return this.#observers
 	}
 	/**
 	 *  Represents the fields defined in the plugin settings
@@ -39,12 +45,14 @@ export class FormulaPerValue {
 		this.#parent = parent;
 		this.#plugin = plugin;
 		this.#specs = specs;
+		this.#observers = specs.formula.observers
 	}
 
 	initialize() {
 		const { form } = this.#plugin;
 		const fields = new Set<string>();
-		this.#mainFields = this.fields.map(name => form.getField(name));
+
+		this.#mainFields = this.#parent.getModels(this.fields);
 
 		/**
 		 * The method will iterate over the conditions to get the parser for each value
@@ -72,8 +80,14 @@ export class FormulaPerValue {
 		});
 
 		this.listenConditionals();
-
 		this.#mainFields.forEach(item => item.on('change', this.calculate.bind(this)));
+		if (this.#observers && Array.isArray(this.#observers) && !!this.#observers.length) {
+			const fields = this.#parent.getModels(this.#observers);
+			fields.forEach(field => {
+				if (!field) return;
+				field.on("change", this.calculateAll.bind(this))
+			})
+		}
 	}
 
 	calculateAll() {
@@ -81,6 +95,7 @@ export class FormulaPerValue {
 	}
 	listenConditionals() {
 		this.#mainFields.forEach(field => {
+			if (!field) return
 			field.on('change', this.calculate.bind(this));
 		});
 	}
@@ -90,17 +105,21 @@ export class FormulaPerValue {
 		const formula = this.evaluate(field.value);
 
 		if (!formula) return;
+
 		const variables = formula.tokens.filter(token => token.type === 'variable').map(item => item.value);
 		const params = this.#parent.getParams(variables);
-		const result = parse(formula.formula).evaluate(params);
 		const formulaField = form.getField(this.name);
-		this.#value = parse(formula.formula).evaluate(params);
-		if (this.#plugin.formulas.has(this.name)) this.#plugin.formulas.get(this.name).value = this.#value;
 
-		const model = this.#plugin.form.getField(this.name);
-		model && model.set({ value: this.#value });
-
-		formulaField && formulaField.set({ value: result });
+		try {
+			const keys = Object.keys(params);
+			const result = keys.length === 1 ? params[keys[0]] : parse(formula.formula as string).evaluate(params);
+			this.#value = [-Infinity, Infinity, undefined, null, NaN].includes(result) ? this.#emptyValue : Number(result.toFixed(2));;
+			formulaField && formulaField.set({ value: this.#value });
+			this.#parent.trigger('change');
+		} catch (e) {
+			console.log(e);
+			throw new Error('Error calculating the formula');
+		}
 	}
 
 	evaluate(value) {

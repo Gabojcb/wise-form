@@ -11,7 +11,6 @@ class FormModel extends BaseWiseModel {
 	get specs() {
 		return this.#specs;
 	}
-
 	#plugins: PluginsManager;
 	get plugins() {
 		return this.#plugins;
