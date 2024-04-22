@@ -8,14 +8,12 @@ export const MultiplyFields = {
 			type: 'text',
 			label: 'Formula',
 			required: true, 
-			variant: 'floating',
             disabled: false
 		},
 		{
 			name: 'Nombre',
 			type: 'text',
 			label: 'form...',
-			variant: 'floating',
 			required: true, 
             disabled: false
 		},

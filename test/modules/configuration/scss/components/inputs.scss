@@ -1,10 +1,40 @@
-.inputs-list {
-    .inputs-list__section {
-        display: grid;
-        grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
-        gap: 1rem;
-        flex-direction: row;
-    }
+@mixin flexDirection($direction, $gap: 1rem) {
+    display: flex;
+    flex-direction: $direction;
+    gap: $gap;
+}
 
+$surface: #8e918f;
+
+.inputs-list {
+    max-height: 500px;
+    overflow-y: auto;
+    .inputs-list__section {
+       @include flexDirection(column, 1rem);
+
+       .collapsible__container  {
+            padding: 1rem;
+            border-radius: var(--border-radius-base);
+            background-color: var(--surface-variant);
+       }
+    }
     margin: .5rem 0rem;
+}
+
+.block-configuration__content {
+    .content-flex {
+        @include flexDirection(column, 1rem);
+
+        .pui-input > input {
+            background-color: var(--background);
+        }
+
+        .pui-input-select > select {
+            background-color: var(--background);
+        }
+
+        .pui-textarea > textarea {
+            background-color: var(--background);
+        }
+    } 
 }

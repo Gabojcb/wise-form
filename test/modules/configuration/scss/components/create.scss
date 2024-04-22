@@ -1,0 +1,13 @@
+
+
+.main__creation-form {
+    .section__creation-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        button.pui-button {
+            margin-top: .5rem;
+        }
+    }
+}

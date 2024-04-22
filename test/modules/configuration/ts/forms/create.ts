@@ -4,22 +4,8 @@ export const CreateForm = {
 	template: ['1', '1', '1'],
 	fields: [
 		{
-			name: 'nameForm',
-			type: 'text',
-			label: 'Name of Form',
-			variant: 'floating',
-            disabled: false
-		},
-		{
-			name: 'litsFields',
-			type: 'textarea',
-			label: 'fields',
-			variant: 'floating',
-			required: true,
-		},
-		{
-			name: 'btnSend',
-			type: 'buttonSend',
+			name: 'formCreate',
+			type: 'createForm',
 		}
 	],
 };
