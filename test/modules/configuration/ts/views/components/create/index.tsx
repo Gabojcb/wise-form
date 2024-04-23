@@ -12,7 +12,7 @@ export function CreateForm() {
     nameForm: '',
     title: '',
     template: '',
-    fields: '',
+    fields: '' || [],
   });
 
   const handleInputChange = (e) => {
@@ -33,15 +33,14 @@ export function CreateForm() {
 
   const handleNextClick = async () => {
     try {
-      const fieldsValue = formData.fields.trim().split('\n').map(field => field.trim().toLowerCase());
-      const filteredFields = fieldsValue.filter(field => field !== '').join(',').replace(/,+/g, ',');
-  
+      const fieldsValue = formData.fields.trim().split('\n').map(field => field.trim().toLowerCase()).filter(field => field !== '').join(',').replace(/,+/g, ',');
+
       setFormData({
         ...formData,
-        fields: filteredFields,
+        fields: fieldsValue.split(','),
       });
-  
-      store.saveData({...formData, fields: filteredFields});
+
+      store.saveData({...formData, fields: fieldsValue.split(',')});
     } catch (error) {
       console.error(error);
     }

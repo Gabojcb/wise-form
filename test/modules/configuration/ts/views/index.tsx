@@ -10,7 +10,7 @@ function View({ store }): JSX.Element {
 	return (
 		<FormContext.Provider value={{ current: form, store }}>
 			<div className='page__container-configuration'>
-				<Aside />
+				{/* <Aside /> */}
 				<Main />
 			</div>
 		</FormContext.Provider>

@@ -2,12 +2,16 @@ import React from 'react';
 import { Input, Radio, Select, Textarea } from 'pragmate-ui/form';
 import { CollapsibleContainer, CollapsibleHeader, CollapsibleContent } from 'pragmate-ui/collapsible';
 import { typeFields } from './options';
+import { useInputContext } from './context';
 
 export function ContentFieldItem({ index }) {
     const [selectedValue, setSelectedValue] = React.useState('');
     const [showOptions, setShowOptions] = React.useState(false);
     const [radioRequired, setRadioRequired] = React.useState('true');
     const [radioDisabled, setRadioDisabled] = React.useState('enabled');
+
+    const { itemName } = useInputContext();
+
 
     function handleRadioRequired(event) {
         const { value } = event.target;
@@ -34,12 +38,8 @@ export function ContentFieldItem({ index }) {
 
     return (
         <>
-            <CollapsibleContainer>
                 <div className="block-configuration">
-                    <CollapsibleHeader className='block-configuration__header'>
-                        <h3 className='block-based__strong'>Field: {index}</h3>
-                    </CollapsibleHeader>
-                    <CollapsibleContent className='block-configuration__content'>
+                    <h3 className='block-based__strong'>Campo: {itemName}</h3>
                         <div className="content-flex">
                             <Input type='text' label='Nombre del Campo' value='' />
                             <Input type='text' label='ClassName' value='' />
@@ -87,9 +87,7 @@ export function ContentFieldItem({ index }) {
                                 />
                             </div>
                         </div>
-                    </CollapsibleContent>
                 </div>
-            </CollapsibleContainer>
         </>
     );
 }

@@ -7,12 +7,15 @@
 $surface: #8e918f;
 
 .inputs-list {
-    max-height: 500px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
     .inputs-list__section {
        @include flexDirection(column, 1rem);
 
-       .collapsible__container  {
+       .block-configuration  {
             padding: 1rem;
             border-radius: var(--border-radius-base);
             background-color: var(--surface-variant);
@@ -21,7 +24,6 @@ $surface: #8e918f;
     margin: .5rem 0rem;
 }
 
-.block-configuration__content {
     .content-flex {
         @include flexDirection(column, 1rem);
 
@@ -37,4 +39,3 @@ $surface: #8e918f;
             background-color: var(--background);
         }
     } 
-}
