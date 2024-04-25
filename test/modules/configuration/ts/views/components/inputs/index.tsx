@@ -10,8 +10,8 @@ export function InputsList() {
     const formData = localStorage.getItem('formData');
     const formDataParse = JSON.parse(formData);
 
-    const [selectedItemIndex, setSelectedItemIndex] = useState(null);
-    const [itemName, setItemName] = useState(null);
+    const [selectedItemIndex, setSelectedItemIndex] = useState(formDataParse.fields[0]);
+    const [itemName, setItemName] = useState(formDataParse.fields[0]);
 
     const output = selectedItemIndex !== null ? (
         <ContentFieldItem index={selectedItemIndex} />

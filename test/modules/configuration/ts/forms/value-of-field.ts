@@ -1,5 +1,5 @@
 export const valueOfField = {
-	name: "valueOfField",
+	name: "Formula basado en valores de campos",
 	title: 'Value Of Field',
 	template: ['1', '1'],
 	fields: [

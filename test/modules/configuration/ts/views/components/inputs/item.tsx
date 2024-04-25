@@ -41,17 +41,19 @@ export function ContentFieldItem({ index }) {
                 <div className="block-configuration">
                     <h3 className='block-based__strong'>Campo: {itemName}</h3>
                         <div className="content-flex">
-                            <Input type='text' label='Nombre del Campo' value='' />
-                            <Input type='text' label='ClassName' value='' />
-                            <Input type='text' label='Label' value='' />
-                            <Input type='text' label='Placeholder' value='' />
-                            <Select
-                                label="Tipo"
-                                options={typeFields}
-                                value={selectedValue}
-                                onChange={handleSelectChange}
-                            />
-                            {showOptions && <Textarea label="Opciones" />}
+                            <div className="content-flex__input">
+                                <Input type='text' label='Nombre del Campo' value='' />
+                                <Input type='text' label='ClassName' value='' />
+                                <Input type='text' label='Label' value='' />
+                                <Input type='text' label='Placeholder' value='' />
+                                <Select
+                                    label="Tipo"
+                                    options={typeFields}
+                                    value={selectedValue}
+                                    onChange={handleSelectChange}
+                                />
+                                {showOptions && <Textarea label="Opciones" />}
+                            </div>
                             <div className="content-radio__required">
                                 <label className='label-radio'>Requerido:</label>
                                 <Radio

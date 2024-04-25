@@ -19,7 +19,9 @@ function Main(): JSX.Element {
 	const { store } = useFormContext();
 
 	const [active, setActive] = React.useState<FormModel>(store.active);
-	const title = `Form: ${active.name}`;
+	const title = `${active.name}`;
+
+	console.log("🚀 ~ Main ~ active.title:", active)
 
 	useBinder([store], () => setActive(store.active));
 	
@@ -32,7 +34,7 @@ function Main(): JSX.Element {
 		inputsList: InputsList
 	};
 	return (
-		<main>
+		<main className='wise-form__main'>
 			<h1>{title}</h1>
 			<WiseForm types={types} model={active}></WiseForm>
 		</main>

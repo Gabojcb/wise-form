@@ -1,6 +1,6 @@
 export const CreateForm = {
 	name: 'createForm',
-	title: 'Creation',
+	title: 'Creacion de Formulario',
 	template: ['1', '1', '1'],
 	fields: [
 		{

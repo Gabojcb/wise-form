@@ -9,7 +9,7 @@ import { Button } from 'pragmate-ui/components';
 export function FormulaInput() {
 
   const { store } = useFormContext();
-	const [selectedValue, setSelectedValue] = React.useState('');
+	const [selectedValue, setSelectedValue] = React.useState('simpleFormulas');
 
   const handleSelectChange = (event) => {
 		const {value} = event.currentTarget
@@ -29,7 +29,7 @@ export function FormulaInput() {
   return (
     <main className='main__formula-condition'>
       <Select
-          label="Type formula"
+          label="Tipo de Formula"
           options={formulas}
           value={selectedValue}
           onChange={handleSelectChange}

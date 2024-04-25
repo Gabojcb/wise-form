@@ -11,17 +11,32 @@ $surface: #8e918f;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-
+    .aside-buttons > .list-unstyled {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        justify-content: space-around
+    }
     .inputs-list__section {
        @include flexDirection(column, 1rem);
 
        .block-configuration  {
             padding: 1rem;
             border-radius: var(--border-radius-base);
-            background-color: var(--surface-variant);
        }
     }
     margin: .5rem 0rem;
+
+    @media screen and (min-height: 850px) {
+
+        .inputs-list__section > .block-configuration > .content-flex {
+            @include flexDirection(row, 1rem);
+
+            &__input {
+                @include flexDirection(column, 1rem);
+            }
+        }
+    }
 }
 
     .content-flex {

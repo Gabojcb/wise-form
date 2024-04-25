@@ -1,6 +1,6 @@
 export const FieldsForm = {
 	name: 'fieldsForm',
-	title: 'Fields',
+	title: 'Configuracion de Campos',
 	template: ['1', '1'],
 	fields: [
 		{

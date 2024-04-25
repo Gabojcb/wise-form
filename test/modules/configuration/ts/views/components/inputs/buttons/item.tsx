@@ -5,12 +5,16 @@ import { useInputContext } from '../context';
 
 export function AsideItem({ item, index }) {
 
-    const { setSelectedItemIndex, setItemName  } = useInputContext();	
+    const { setSelectedItemIndex, itemName , setItemName  } = useInputContext();
+	
+	
 	const handleItemClick = () => {
-        setSelectedItemIndex(index);
+		setSelectedItemIndex(index);
 		setItemName(item);
     };
+
 	const attrs = { variant: 'primary', bordered: true };
+	if (itemName === item) attrs.bordered = false;
 
 	return (
 		<li>

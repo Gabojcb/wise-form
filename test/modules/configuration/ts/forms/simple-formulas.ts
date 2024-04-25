@@ -1,6 +1,6 @@
 export const simpleFormulas = {
-	name: "simpleFormulas",
-	title: 'Simple Formulas',
+	name: 'simpleFormulas',
+	title: 'Formula simple',
 	template: ['1', '1'],
 	fields: [
 		{

@@ -1,6 +1,6 @@
 export const MultiplyFields = {
 	name: "multiplyFields",
-	title: 'multiply Fields',
+	title: 'Formulas multiples campos',
 	template: ['1', '1', '1'],
 	fields: [
 		{
