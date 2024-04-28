@@ -21,7 +21,7 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 		return this.#instances;
 	} */
 
-	formData;
+	formulaData;
 
 	static instance; 
 
@@ -73,6 +73,14 @@ export class StoreManager extends ReactiveModel<StoreManager> {
 		this.setForm(this.forms[form]);
 	}
 
+
+	saveFormula = data => {
+		try {
+			this.formulaData = data;
+		} catch (error) {
+			console.error(error);
+		}
+	}
 	saveData = data => {		
 		try {
 			const formDataString = JSON.stringify(data);

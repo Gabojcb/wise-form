@@ -21,8 +21,6 @@ function Main(): JSX.Element {
 	const [active, setActive] = React.useState<FormModel>(store.active);
 	const title = `${active.name}`;
 
-	console.log("🚀 ~ Main ~ active.title:", active)
-
 	useBinder([store], () => setActive(store.active));
 	
 	const types = {
