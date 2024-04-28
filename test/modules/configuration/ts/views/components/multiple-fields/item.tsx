@@ -3,26 +3,12 @@ import { Input } from 'pragmate-ui/form';
 import { CollapsibleContainer, CollapsibleHeader, CollapsibleContent } from 'pragmate-ui/collapsible';
 import { MultipleSubItem } from './sub-item';
 import { IconButton } from 'pragmate-ui/icons';
+import { useConditionItem } from './use-condition-item';
 
 export function MultiplyItem({ index, formula, deleteFormula, updateFormula }) {
-	const { field, conditions } = formula;
 
-	const addCondition = () => {
-        const newConditions = [...conditions, { type: '', value: '', formula: '' }];
-        updateFormula(index, field, newConditions);
-      };
-    
-      const deleteCondition = (conditionIndex) => {
-        const newConditions = [...conditions];
-        newConditions.splice(conditionIndex, 1);
-        updateFormula(index, field, newConditions);
-      };
-    
-      const updateCondition = (conditionIndex, type, value, formula) => {
-        const newConditions = [...conditions];
-        newConditions[conditionIndex] = { type, value, formula };
-        updateFormula(index, field, newConditions);
-      };
+	const { addCondition, deleteCondition, updateCondition,} = useConditionItem(index, formula, updateFormula);
+	const { field, conditions } = formula;
 
 	const conditionComponents = conditions.map((condition, conditionIndex) => (
 		<MultipleSubItem
@@ -32,7 +18,7 @@ export function MultiplyItem({ index, formula, deleteFormula, updateFormula }) {
 		deleteCondition={() => deleteCondition(conditionIndex)}
 		updateCondition={updateCondition}
 		/>
-  ));
+  	));
 
 	return (
 		<CollapsibleContainer>
