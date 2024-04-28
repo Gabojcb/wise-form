@@ -4,6 +4,7 @@ import { conditionsFormula } from '../../options';
 import { IconButton } from 'pragmate-ui/icons';
 
 export function ConditionSubItem({ conditionIndex, condition, deleteCondition, updateCondition }) {
+  
   const { type, value, formula } = condition;
 
   return (

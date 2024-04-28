@@ -9,7 +9,7 @@ export function BasedField() {
   const [formulas, setFormulas] = React.useState([]);
   const { store } = useFormContext();
   
-  const addFormula = () => {
+  	const addFormula = () => {
 	  setFormulas([...formulas, { field: '', conditions: [{ type: '', value: '', formula: '' }] }]);
 	};
 
@@ -44,13 +44,13 @@ export function BasedField() {
   return (
 	<BaseFieldsContext.Provider value={value}>
 		<main className='main__based-field'>
-		<header className='header__based-field'>
-			<h2>Add Formula</h2>
-			<IconButton title='add' variant="primary" onClick={addFormula} className="xs circle" icon="add" />
-		</header>
-		<article className="article__based-field">
-			{formulaComponents}
-		</article>
+			<header className='header__based-field'>
+				<h2>Add Formula</h2>
+				<IconButton title='add' variant="primary" onClick={addFormula} className="xs circle" icon="add" />
+			</header>
+			<article className="article__based-field">
+				{formulaComponents}
+			</article>
 			<Button variant='primary' onClick={saveFormulas}>Guardar formula</Button> 
 		</main>
 	</BaseFieldsContext.Provider>

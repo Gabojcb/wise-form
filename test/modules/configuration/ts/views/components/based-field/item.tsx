@@ -29,7 +29,7 @@ export function ConditionItem({ index, formula, deleteFormula, updateFormula }) 
             <IconButton title='remove' variant="danger" className="xs circle" icon="close" onClick={deleteFormula} />
           </CollapsibleHeader>
           <Input
-            placeholder="field"
+            label="field"
             value={field}
             onChange={(e) => updateFormula(index, e.target.value, conditions)}
           />
