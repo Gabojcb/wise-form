@@ -17,7 +17,7 @@ $padding: .5rem .5rem .5rem 1.5rem;
     }
     
     .article__based-field {
-        @include flexDirection(column, 0rem);
+        @include flexDirection(row, 0rem);
 
         .container__based-item {
         
@@ -38,6 +38,10 @@ $padding: .5rem .5rem .5rem 1.5rem;
                             justify-content: space-between;
                             align-items: center;
                             flex-direction: row;
+
+                            .content-action {
+                                @include flexDirection(row, .5rem);
+                            }
                         }
                         .content-condition {
                             padding: $padding;

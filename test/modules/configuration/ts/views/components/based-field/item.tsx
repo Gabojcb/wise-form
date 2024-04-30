@@ -24,10 +24,6 @@ export function ConditionItem({ index, formula, deleteFormula, updateFormula }) 
     <section className='container__based-item'>
       <CollapsibleContainer>
         <div className="block-based">
-          <CollapsibleHeader className='block-based__header'>
-            <h3 className='block-based__strong'>Formula: </h3>
-            <IconButton title='remove' variant="danger" className="xs circle" icon="close" onClick={deleteFormula} />
-          </CollapsibleHeader>
           <Input
             label="field"
             value={field}
@@ -36,8 +32,11 @@ export function ConditionItem({ index, formula, deleteFormula, updateFormula }) 
           <div className="block-based__condition">
             <CollapsibleContent className='based-collapsible'>
               <div className="based-collapsible__action">
-                <h4>Condition:</h4>
-                <IconButton title='add' variant="primary" onClick={addCondition} className="xs circle" icon="add" />
+                <h4>Condition:</h4> 
+                <div className="content-actions">
+                  <IconButton title='remove' variant="danger" className="xs circle" icon="close" onClick={deleteFormula} />
+                  <IconButton title='add' variant="primary" onClick={addCondition} className="xs circle" icon="add" />
+                </div>
               </div>
               {conditionComponents}
             </CollapsibleContent>
